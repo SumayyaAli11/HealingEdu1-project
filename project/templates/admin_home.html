@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock title %}
+{% block body %}
+
+<h1>Admin home page</h1>
+
+  
+        {% csrf_token %}  
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Username</th>
+                <th scope="col">Email</th>
+                
+              </tr>
+            </thead>
+            <tbody>
+            {% for dest in dests %}
+              <tr>
+                <th scope="row">{{dest.id}}</th>
+                <td>{{dest.username}}</td>
+                
+                <td>{{dest.email}}</td>
+                <td>  
+                    <a href="/edit/{{ dest.id }}"><span class="glyphicon glyphicon-pencil" >Edit</span></a>  
+                    <a href="/delete/{{ dest.id }}">Delete</a>  
+                </td>  
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+          <br>  
+<br>  
+<center><a href="/signup" class="btn btn-primary">Add New Record</a></center>  
+
+
+{% endblock body %}
